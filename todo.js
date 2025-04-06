@@ -50,29 +50,42 @@ edit.innerText="Edit"
 
     edit.addEventListener("click",()=>{
      let oldvalue=span1.innerText;
-      let editvalue=prompt("Edit Your Task",oldvalue)
+    let editinput=document.createElement("input")
+        editinput.value=oldvalue;
+        li1.replaceChild(editinput,span1);
+        editinput.focus();
 
-      if(editvalue==""||editvalue.trim()==""){
+
+        editinput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                saveEdit();
+            }
+        });
+
+        editinput.addEventListener("blur",saveEdit)// if user click any where it auto save
+        function saveEdit() {
+            if(editinput.value.trim()==="")
+            {
+                alert("task cannot be empty")
+            }
+            else{
+                span1.innerText=editinput.value;
+                li1.replaceChild(span1,editinput)
+            }
+        }
+
+     
+     
+     
+
+
+     
+
        
-       alert("task cannot be empty")
-    }
-      
-      else{
-        span1.innerText=editvalue
-      }
-       
-     
-     
-
-
-     
-
-
      
 
 
     })
     }
-   
-
+    
 })
